@@ -6,7 +6,7 @@ docker_image_name = "decathlon_turnover"
 docker_container_name = "decathlon_turnover"
 repo_name = "decathlon_turnover"
 version = "0.1.0"
-port = 5001
+port = 5000
 
 
 help:
@@ -94,7 +94,7 @@ clean_docker: ## Stop and delete the container.
 dcup: ## Build Docker compose.
 	@docker compose up --build
 
-performance: ## Profiling source code.
+performance: ## Profiling source code (deprecated).
 	@poetry run pyinstrument main.py
 
 clean: ## Delete unwanted files.

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from typing import Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -7,6 +8,9 @@ from pydantic import BaseModel
 
 
 # ---------------------- INPUTS ----------------------
+class InfoIn(BaseModel):
+    pass
+
 class TrainIn(BaseModel):
     pass
 
@@ -16,6 +20,14 @@ class PredictIn(BaseModel):
 
 
 # ---------------------- OUTPUTS ----------------------
+class InfoOut(BaseModel):
+    app_name: str
+    app_version: str
+    app_description: str
+    author: Optional[str] = None
+    host: str
+    port: str
+
 class TrainOut(BaseModel):
     message: str
 
