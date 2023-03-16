@@ -4,7 +4,8 @@ from typing import Callable
 
 from fastapi import FastAPI
 from loguru import logger
-from decathlon_turnover.core import settings, setup_logger
+
+from decathlon_turnover.core import setup_logger
 
 
 def start_app_handler(app: FastAPI) -> Callable:

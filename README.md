@@ -40,6 +40,7 @@ AVAILABLE COMMANDS
  format                         Format the source code using black.
  format_check                   Check what to change using black.
  isort                          Sort the imports using isort.
+ lint                           Lint the source code using Ruff.
  lock                           Generate `poetry.lock` file for dependencies.
  mypy                           Run mypy for data type check
  release                        Update version and quality code rank in Makefile, pyproject.tml 
