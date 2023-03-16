@@ -46,10 +46,19 @@ jobs:
       - name: Execute tests
         run: poetry run pytest --disable-pytest-warnings
 
+      # - name: Merge to dev branch
+      #   run: |
+      #     git config --add remote.origin.fetch
+      #     git config user.email "${{ secrets.GIT_COMMITTER_EMAIL }}"
+      #     git config user.name "${{ secrets.GIT_COMMITTER_NAME }}"
+      #     git fetch --all
+      #     git checkout ${{ secrets.GIT_TARGET_BRANCH_FOR_MERGE }}
+      #     git merge --no-ff origin/${{ github.head_ref }}
+
       - name: Merge to dev branch
-        run: |
-          git config user.email "maamra.youcef@gmail.com"
-          git config user.name "Cyuss"
-          git fetch --all
-          git checkout dev
-          git merge --no-ff origin/${{ github.head_ref }}
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          # from_branch: ${{ github.head_ref }}
+          target_branch: ${{ secrets.GIT_TARGET_BRANCH_FOR_MERGE }}
+          github_token: ${{ github.token }}
