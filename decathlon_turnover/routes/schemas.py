@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from typing import Dict, List, Optional
+from typing import Optional
 
-from enum import Enum
-from pydantic import BaseModel, Field
-
+from pydantic import BaseModel
 
 # --------------------- EXAMPLES ---------------------
 
@@ -12,6 +10,15 @@ from pydantic import BaseModel, Field
 # ---------------------- INPUTS ----------------------
 class InfoIn(BaseModel):
     pass
+
+
+class TrainIn(BaseModel):
+    pass
+
+
+class PredictIn(BaseModel):
+    pass
+
 
 # ---------------------- OUTPUTS ----------------------
 class InfoOut(BaseModel):
@@ -21,3 +28,11 @@ class InfoOut(BaseModel):
     author: Optional[str] = None
     host: str
     port: str
+
+
+class TrainOut(BaseModel):
+    message: str
+
+
+class PredictOut(BaseModel):
+    message: str

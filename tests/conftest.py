@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import pytest
-
-from starlette.config import environ
 from starlette.testclient import TestClient
 
 from decathlon_turnover.main import get_app

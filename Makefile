@@ -6,7 +6,7 @@ docker_image_name = "decathlon_turnover"
 docker_container_name = "decathlon_turnover"
 repo_name = "decathlon_turnover"
 version = "0.1.0"
-port = 5001
+port = 5000
 
 
 help:
@@ -71,6 +71,10 @@ format: ## Format the source code using black.
 format_check: ## Check what to change using black.
 	@poetry run black --check $(repo_name)/
 
+lint: ## Lint the source code using Ruff.
+	@poetry run black .
+	@poetry run ruff -e --fix .
+
 isort: ## Sort the imports using isort.
 	@poetry run isort $(repo_name)/
 
@@ -89,6 +93,9 @@ clean_docker: ## Stop and delete the container.
 
 dcup: ## Build Docker compose.
 	@docker compose up --build
+
+performance: ## Profiling source code (deprecated).
+	@poetry run pyinstrument main.py
 
 clean: ## Delete unwanted files.
 	@rm -rf `find . -name __pycache__`

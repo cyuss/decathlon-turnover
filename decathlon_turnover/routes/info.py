@@ -8,13 +8,12 @@ from loguru import logger
 from ..core import settings
 from .schemas import InfoOut
 
-
 router = APIRouter()
 
 
 @router.get("/info", response_model=InfoOut)
 def info(
-        settings: settings.Settings = Depends(settings.get_settings)
+    settings: settings.Settings = Depends(settings.get_settings),
 ) -> Dict[str, Union[str, None]]:
     """Return the API metadata to the user.
 
@@ -31,5 +30,5 @@ def info(
         "app_description": settings.app_description,
         "author": settings.author,
         "host": settings.host,
-        "port": settings.port
+        "port": settings.port,
     }
