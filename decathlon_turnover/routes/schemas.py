@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from typing import Dict, List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -10,6 +10,7 @@ from pydantic import BaseModel
 # ---------------------- INPUTS ----------------------
 class InfoIn(BaseModel):
     pass
+
 
 class TrainIn(BaseModel):
     pass
@@ -27,6 +28,7 @@ class InfoOut(BaseModel):
     author: Optional[str] = None
     host: str
     port: str
+
 
 class TrainOut(BaseModel):
     message: str

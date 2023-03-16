@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from decathlon_turnover.routes import prediction, training, info
+from decathlon_turnover.routes import info, prediction, training
 
 api_router = APIRouter()
 
