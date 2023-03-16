@@ -48,6 +48,8 @@ jobs:
 
       - name: Merge to dev branch
         run: |
+          git config user.email "maamra.youcef@gmail.com"
+          git config user.name "Cyuss"
           git fetch --all
           git checkout dev
           git merge --no-ff origin/${{ github.head_ref }}
