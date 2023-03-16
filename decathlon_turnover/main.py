@@ -8,8 +8,8 @@ from decathlon_turnover.core.event_handlers import start_app_handler, stop_app_h
 from decathlon_turnover.core.middlewares import RequestContextLogMiddleware
 from decathlon_turnover.routes import api_router
 
-
 metadata = settings.get_settings()
+
 
 def get_app() -> FastAPI:
     logger.info("App Initialization")
@@ -20,5 +20,6 @@ def get_app() -> FastAPI:
     fast_app.add_middleware(RequestContextLogMiddleware)
 
     return fast_app
+
 
 app = get_app()

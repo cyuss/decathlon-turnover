@@ -8,7 +8,6 @@ from loguru import logger
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.requests import Request
 
-
 CORRELATION_ID_CTX_KEY: str = "correlation_id"
 REQUEST_ID_CTX_KEY: str = "request_id"
 
@@ -36,8 +35,12 @@ class RequestContextLogMiddleware(BaseHTTPMiddleware):
     """
 
     # FIXME: Reuse the new format to define custom middleware t.ly/Regh
-    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> RequestResponseEndpoint:        
-        correlation_id = _correlation_id_ctx_var.set(request.headers.get("X-Correlation-ID", str(uuid4())))
+    async def dispatch(
+        self, request: Request, call_next: RequestResponseEndpoint
+    ) -> RequestResponseEndpoint:
+        correlation_id = _correlation_id_ctx_var.set(
+            request.headers.get("X-Correlation-ID", str(uuid4()))
+        )
         request_id = _request_id_ctx_var.set(str(uuid4()))
         # update the request ID into the logger
         logger.configure(extra={"request_id": get_request_id()})
