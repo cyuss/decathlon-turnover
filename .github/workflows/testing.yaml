@@ -48,6 +48,7 @@ jobs:
 
       - name: Merge to dev branch
         run: |
+          git remote -v
           git config user.email "maamra.youcef@gmail.com"
           git config user.name "Cyuss"
           git fetch --all
