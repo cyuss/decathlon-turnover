@@ -48,7 +48,6 @@ jobs:
 
       - name: Merge to dev branch
         run: |
-          git remote add origin https://github.com/cyuss/decathlon-turnover.git
           git config user.email "${{ secrets.GIT_COMMITTER_EMAIL }}"
           git config user.name "${{ secrets.GIT_COMMITTER_NAME }}"
           git fetch --all
