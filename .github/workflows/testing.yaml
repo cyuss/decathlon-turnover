@@ -54,7 +54,7 @@ jobs:
           git fetch --all
           git checkout dev
           git merge --no-ff origin/${{ github.head_ref }}
-          git push "https://${{ secrets.GH_TOKEN_TEST }}@github.com/cyuss/decathlon-turnover.git"
+          git push "https://cyuss:${{ secrets.GH_TOKEN_TEST }}@github.com/cyuss/decathlon-turnover.git"
 
       # - name: Merge to dev branch
       #   uses: devmasx/merge-branch@master
