@@ -48,12 +48,12 @@ jobs:
 
       - name: Merge to dev branch
         run: |
-          git config user.email "${{ secrets.GIT_COMMITTER_EMAIL }}"
-          git config user.name "${{ secrets.GIT_COMMITTER_NAME }}"
+          git config user.email "maamra.youcef@gmail.com"
+          git config user.name "Cyuss"
           git fetch --all
-          git checkout ${{ secrets.GIT_TARGET_BRANCH_FOR_MERGE }}
+          git checkout dev
           git merge --no-ff origin/${{ github.head_ref }}
-          git push "https://${ secrets.GH_TOKEN_TEST }@github.com/cyuss/decathlon-turnover.git"
+          git push "https://${{ secrets.GH_TOKEN_TEST }}@github.com/cyuss/decathlon-turnover.git"
 
       # - name: Merge to dev branch
       #   uses: devmasx/merge-branch@master
