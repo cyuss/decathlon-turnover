@@ -45,21 +45,3 @@ jobs:
 
       - name: Execute tests
         run: poetry run pytest --disable-pytest-warnings
-
-      - name: Merge to dev branch
-        run: |
-          git remote -v
-          git config user.email "maamra.youcef@gmail.com"
-          git config user.name "Cyuss"
-          git fetch --all
-          git checkout dev
-          git merge --no-ff origin/${{ github.head_ref }}
-          git push "https://cyuss:${{ secrets.GH_TOKEN_TEST }}@github.com/cyuss/decathlon-turnover.git"
-
-      # - name: Merge to dev branch
-      #   uses: devmasx/merge-branch@master
-      #   with:
-      #     type: now
-      #     # from_branch: ${{ github.head_ref }}
-      #     target_branch: ${{ secrets.GIT_TARGET_BRANCH_FOR_MERGE }}
-      #     github_token: ${{ github.token }}
