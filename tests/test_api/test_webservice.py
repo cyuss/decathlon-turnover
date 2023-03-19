@@ -12,11 +12,6 @@ from decathlon_turnover.core import settings
 def test_version() -> None:
     """Test the application's version defined in settings
     class compared to the version number defined by Poetry.
-
-    Parameters
-    ----------
-    test_client : TestClient
-        The API test Client.
     """
     proc = subprocess.Popen(["poetry", "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     out, err = proc.communicate()
