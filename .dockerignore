@@ -13,6 +13,7 @@ Dockerfile
 **/*.pyc
 **/__pycache__/
 .pytest-cache/
+.ruff_cache/
 
 # ignore data files
 **/*.csv
