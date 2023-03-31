@@ -1,7 +1,7 @@
 [project]
 name = "decathlon_turnover"
 version = "0.1.0"
-description = ""
+description = "In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level in Decathlon."
 readme = "README.md"
 licence = ""
 authors = ["Youcef"]
@@ -15,9 +15,12 @@ classifiers = [
 [tool.poetry]
 name = "decathlon_turnover"
 version = "0.1.0"
-description = ""
+description = "In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level in Decathlon."
 authors = ["Youcef"]
 readme = "README.md"
+
+[virtualenvs]
+in-project = true
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -27,11 +30,14 @@ loguru = "^0.6.0"
 requests = "^2.28.2"
 httpx = "^0.23.3"
 python-dotenv = "^1.0.0"
+scikit-learn = "^1.2.2"
+pandas = "^1.5.3"
 
 [tool.poetry.group.test.dependencies]
 pytest-cov = "^4.0.0"
 hypothesis = "^6.69.0"
 pyinstrument = "^4.4.0"
+great-expectations = "^0.16.2"
 
 [tool.poetry.group.dev.dependencies]
 radon = "^5.1.0"
@@ -41,6 +47,7 @@ isort = "^5.12.0"
 mypy = "^1.1.1"
 fire = "^0.5.0"
 ruff = "^0.0.256"
+pyinstrument = "^4.4.0"
 
 [tool.poetry.group.docs]
 optional = true
@@ -54,9 +61,9 @@ mkdocs-autorefs = "^0.4.1"
 
 [tool.poetry.group.notebook.dependencies]
 jupyter = "^1.0.0"
-pandas = "^1.5.3"
 statsmodels = "^0.13.5"
 seaborn = {extras = ["stats"], version = "^0.12.2"}
+wandb = "^0.14.0"
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -85,6 +92,7 @@ exclude = [
     ".git",
     ".hg",
     ".mypy_cache",
+    ".pytest_cache",
     ".nox",
     ".pants.d",
     ".ruff_cache",
