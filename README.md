@@ -1,6 +1,6 @@
 # Decathlon Turnover Forecasting
 
-![py_version](https://img.shields.io/badge/python-^3.9-blue?style=for-the-badge&logo=python&logoColor=9cf) ![version](https://img.shields.io/badge/version-0.1.0-gree?style=for-the-badge&logo=semver) ![code quality](https://img.shields.io/badge/code_quality-A-51C62B?style=for-the-badge&logo=codeforces&logoColor=9cf)
+![py_version](https://img.shields.io/badge/python-^3.9-blue?style=for-the-badge&logo=python&logoColor=9cf) ![version](https://img.shields.io/badge/version-0.2.0-gree?style=for-the-badge&logo=semver) ![code quality](https://img.shields.io/badge/code_quality-A-51C62B?style=for-the-badge&logo=codeforces&logoColor=9cf)
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
@@ -25,6 +25,7 @@ In stores many decisions are made by managers at the department level.
 In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level.
 
 To reach this goal, we use a historical data of 6 years from 2012 to 2017. The historical data concerns 4 departments, each department is made up of a group of stores (see. [Data Exploration](#data-exploration)).
+
 ## Get started
 
 ### Init the project
@@ -193,3 +194,20 @@ To better understand our data, we answer the following questions that we can che
 To forecast the store's turnover, we used a simple `RandomForestRegressor` with `sklearn` framework and saved it using `pickle` library. The model is saved to `/models` directory to be loaded later by the API.
 
 ## Notes and future improvements
+
+This work has be made to show the workflow from scratch to build a forecasting model and deploy it in form of an API to be used by an end-user. Though, a lot of improvements has to be made, we list the most important ones here:
+
+- A simple model is used for turnover forecasting (Random Forest Regressor), while we can use advanced algorithms for time series for example like `ARIMA` or `LSTM`.
+- The resulted models are stored inside `/models` directory, which is inconvenient to deploy in servers. A better solution would be using cloud storage like buckets. This solution adds loading time but it's done only once (API startup).
+- The unit tests aren't complete. An other approach would be using property based testing to detect edge cases during tests. For this, we use `hypothesis` package inspired by `haskell` testing (functional programming).
+- The size of the dataset might be problematic in the future, which makes us think about using other librairies to handle it other than `pandas`, for example `dask` or a more complete solution like `spark`.
+- To find the best hyperparameters during our model's training, we might implement `hyperparameters optimization` process. For this, we can use `Ray Tune` which is a mature solution.
+- During the training phase, making many experiments is part of the data scientist's daily. Many solutions allow monitoring this process by benchmarking and adding a history list of the experiments, like `MLFlow` and `W&B` (weights and biases).
+- Adding interpretability process to better understand the prediction process by the model
+
+We also noticed few details about the dataset itself. The main task is to predict stores' turnover to help managers in the decision making process. Though, all the variables in our dataset describe only the geographical characteristics of the store, which isn't enough to predict the turnover. Some other interesting geographical variables would be:
+
+- Number of inhabitants
+- Age groups in region
+- Mean salary in region
+- ... etc

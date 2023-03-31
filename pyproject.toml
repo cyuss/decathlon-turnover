@@ -1,6 +1,6 @@
 [project]
 name = "decathlon_turnover"
-version = "0.1.0"
+version = "0.2.0"
 description = "In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level in Decathlon."
 readme = "README.md"
 licence = ""

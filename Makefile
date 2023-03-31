@@ -5,7 +5,7 @@
 docker_image_name = "decathlon_turnover"
 docker_container_name = "decathlon_turnover"
 repo_name = "decathlon_turnover"
-version = "0.1.0"
+version = "0.2.0"
 port = 5000
 
 
