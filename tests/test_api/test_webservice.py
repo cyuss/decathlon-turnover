@@ -14,7 +14,7 @@ def test_version() -> None:
     class compared to the version number defined by Poetry.
     """
     proc = subprocess.Popen(["poetry", "version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    out, err = proc.communicate()
+    out, _ = proc.communicate()
     out = out.decode("utf-8").rstrip()
     poetry_version = out.split(" ")[1]
 
@@ -32,3 +32,20 @@ def test_info(test_client: TestClient) -> None:
     """
     response = test_client.get("/info")
     assert response.status_code == 200
+
+
+@pytest.mark.api
+def test_prediction(test_client: TestClient) -> None:
+    """Test turnover prediction endpoint.
+
+    Parameters
+    ----------
+    test_client : TestClient
+        The API Client for testing
+    """
+    pass
+
+
+@pytest.mark.ml
+def test_model_loading() -> None:
+    pass
