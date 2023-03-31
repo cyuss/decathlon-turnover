@@ -11,7 +11,10 @@ class Settings(BaseSettings):
 
     app_version: str = "0.1.0"
     app_name: str = """Decathlon Turnoever Forescasting"""
-    app_description: str = """In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level in Decathlon."""
+    app_description: str = """
+    In order to help store managers in making mid-term decisions driven
+    by economic data, we want to forecast the turnover for the next 8 weeks
+    at store-department level in Decathlon."""
     api_prefix: str = ""
     author: str = "Youcef"
     host: str = "0.0.0.0"
