@@ -9,7 +9,7 @@ from pydantic import BaseSettings
 class Settings(BaseSettings):
     """Store settings variables and load env variables from .env file."""
 
-    app_version: str = "0.1.0"
+    app_version: str = "0.2.0"
     app_name: str = """Decathlon Turnoever Forescasting"""
     app_description: str = """
     In order to help store managers in making mid-term decisions driven

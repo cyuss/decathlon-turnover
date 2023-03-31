@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.0] - 2023-03-30
+
+### Added
+
+- Data Exploration
+- Features engineering
+- Forecasting model
+- Model integration into the API
+
 ## [0.1.0] - 2023-03-16
 
 ### Added
