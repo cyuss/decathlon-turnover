@@ -11,6 +11,8 @@
 		- [Development workflow](#development-workflow)
 		- [Code quality](#code-quality)
 		- [Documentation \& versioning](#documentation--versioning)
+	- [CI/CD workflow](#cicd-workflow)
+	- [Data Exploration](#data-exploration)
 	- [Future improvements](#future-improvements)
 
 <!-- /TOC -->
@@ -141,5 +143,9 @@ The git commit messages are organized by category to simplify the project's hist
 - :config:        config: Changing configuration files.
 - :security:      security: Fixing security issues.
 ```
+
+## CI/CD workflow
+
+## Data Exploration
 
 ## Future improvements
