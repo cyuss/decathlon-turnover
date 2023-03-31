@@ -5,20 +5,26 @@
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Decathlon Turnover Forecasting](#decathlon-turnover-forecasting)
-	- [Context](#context)
-	- [Get started](#get-started)
-		- [Init the project](#init-the-project)
-		- [Development workflow](#development-workflow)
-		- [Code quality](#code-quality)
-		- [Documentation \& versioning](#documentation--versioning)
-	- [CI/CD workflow](#cicd-workflow)
-	- [Data Exploration](#data-exploration)
-	- [Future improvements](#future-improvements)
+  - [Context](#context)
+  - [Get started](#get-started)
+    - [Init the project](#init-the-project)
+    - [Development workflow](#development-workflow)
+    - [Code quality](#code-quality)
+    - [Documentation \& versioning](#documentation--versioning)
+  - [CI/CD workflow](#cicd-workflow)
+  - [Machine Learning](#machine-learning)
+    - [Data Exploration](#data-exploration)
+    - [Prediction model](#prediction-model)
+  - [Notes and future improvements](#notes-and-future-improvements)
 
 <!-- /TOC -->
 
 ## Context
 
+In stores many decisions are made by managers at the department level.
+In order to help store managers in making mid-term decisions driven by economic data, we want to forecast the turnover for the next 8 weeks at store-department level.
+
+To reach this goal, we use a historical data of 6 years from 2012 to 2017. The historical data concerns 4 departments, each department is made up of a group of stores (see. [Data Exploration](#data-exploration)).
 ## Get started
 
 ### Init the project
@@ -74,11 +80,6 @@ To add a new route in the project, simply define it in `decathlon_turnover/route
 
 A `core/` folder is defined to regroup all the configuration and settings related files. Globa and environment variables and centralized in `settings.py` file for simplicity and better management.
 
-If you decide to use `pip` for packages management instead of `poetry`, 2 commands are used for the switch:
-
-- `make reqs`: generate a `requirements.txt` file for `pip`.
-- `make reqs_dev`: generate a `requirements_dev.txt` for dev environment packages.
-
 ### Code quality
 
 Few commands are defined to ensure a minimum quality code:
@@ -89,6 +90,7 @@ Few commands are defined to ensure a minimum quality code:
 - `make mypy`: type check in different functions/classes using `mypy`.
 - `make cloc`: count blank lines, comment lines, and physical lines of source code.
 - `make code_metrics`: compute various metrics from the source code.
+- `make profile`: Code profiling to analyze application performance to ensure it is optimized.
 
 All the packages used for ensuring a quality code are configured in the poetry configuration file, `pyproject.toml`. Every related configuration is defined by its own section.
 
@@ -146,6 +148,48 @@ The git commit messages are organized by category to simplify the project's hist
 
 ## CI/CD workflow
 
-## Data Exploration
+To allow software shippement quickly and efficiently, we implement a CI/CD workflow using _GitHub Actions_. For the sake of this project, we imagine three environments:
 
-## Future improvements
+- `Dev`: personal to any developer allowing him to test his changes in an independant environment similar to production environment. The `dev` environment is updated when a PR request is opened following every commit in it.
+- `Staging`: a clone of the production environment to simulate the behavior of the application once deployed to end-users allowing the developers to catch bugs early on and resolve them. The `staging` environment is updated in every merge to the `master`/`main` branch.
+- `Prod`: finally, once all the new features are tested, they are deployed to the production environment to be consumed by the end-users. The `prod` environment is updated in every git tag to define a release.
+
+The tests integrated in the CI/CD pipeline are:
+
+- Code standards like linting, formatting... etc,
+- Unit tests using `pytest`,
+- Documentation building using `mkdocs`.
+
+**PS:** The documentation building is optional and could be replaced by simple _.markdown_ or _.org_ files.
+
+## Machine Learning
+
+### Data Exploration
+
+We distinguish three data files:
+
+- `train.csv`: dataset containing stores/departments related features and weekly turnover data for training purpose. The training dataset contains the _turnover_ variable to predict.
+- `test.csv`: testing dataset has the same structure as `train.csv` without the turnover variable to predict.
+- `bu_feat.csv`: contains more stores' related features like geolocalisation, region, postcode... etc.
+
+The scope of our data concerns **4 departments** and **322 stores**.
+
+To better understand our data, we answer the following questions that we can check the detailled answers in the notebook `notebooks/data_exploration.ipynb`.:
+
+- Which department made the highest turnover in 2016?
+  - The department 127 made the highest turnover in 2016
+- What are the top 5 week numbers (1 to 53) for department 88 in 2015 in terms of turnover over all stores?
+  - Weeks: 27, 37, 36, 38 and 28
+- What was the top performer store in 2014?
+  - Store 121 was the top performer in 2014
+- Based on sales can you guess what kind of sport represents department 73?
+  - We notice that the department 73 has higher sales during the summer, which can makes us think that this department is specialized in summer sports
+- Based on sales can you guess what kind of sport represents department 117?
+  - Same as question above, we notice that the department 117 has higher sales during winter which led us to think that department is specialized in winter's sports like ski for example.
+- What other insights can you draw from the data? Provide plots and figures if needed. (Optional)
+
+### Prediction model
+
+To forecast the store's turnover, we used a simple `RandomForestRegressor` with `sklearn` framework and saved it using `pickle` library. The model is saved to `/models` directory to be loaded later by the API.
+
+## Notes and future improvements
